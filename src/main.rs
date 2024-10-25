@@ -1,4 +1,5 @@
 use std::io;
+use image::{DynamicImage, GenericImageView, io::Reader as ImageReader};
 fn main() {
     let mut choice = Default::default();
     println!("***Menu***\n1. Add Password\n2. Retrieve password\n3. Retrieve all passwords\n(NOTE: image.png should be in the\nfolder or passed on as argument)");
@@ -9,6 +10,12 @@ fn main() {
         .expect("Failed to read line");
 
     // Read image
+    let img = ImageReader::open("../assets/images/img.jpg")
+        .expect("Failed to open image")
+        .decode()
+        .expect("Failed to decode image");
+
+    println!("Loaded image dimensions {:?}", img.dimensions());
 
     /*
     let choice: u32 = match choice.trim().parse(){
