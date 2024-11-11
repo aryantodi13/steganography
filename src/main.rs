@@ -3,24 +3,33 @@ use std::fs::File;
 use std::path::Path;
 //use std::io::BufReader;
 use std::io::prelude::*;
+use std::fs;
 //use image::{DynamicImage, GenericImageView, io::Reader as ImageReader};
-fn main() {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Read image
     //
     let img_path = Path::new("./assets/images/img.jpg");
-    //let out_path = Path::new("./assets/images/output.jpg");
+    let out_path = Path::new("./assets/images/output.jpg");
 
     let mut input_file = File::open(img_path).unwrap();
     //let inputReader = BufReader::new(inputFile);
 
     let mut buffer = Vec::new();
-    input_file.read_to_end(&mut buffer);
-    println!("{}", buffer.len());
-    for (i, j) in buffer.iter().enumerate(){
-        println!("{}", j);
-        if i == 5{ break};
+    let _ = input_file.read_to_end(&mut buffer);
+    //println!("{}", buffer.len());
+    for j in buffer.iter_mut(){
+        //println!("{}", j);
+        if *j == 255 { *j = 254;}
     }
+    /*
+    for (i,j) in buffer.iter().enumerate(){
+        println!("{}", j);
+    }
+    */
+
+    let _ = fs::write(out_path, buffer);
+    Ok(())
 
 
     /*
