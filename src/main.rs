@@ -13,6 +13,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let out_path = Path::new("./assets/images/output.jpg");
 
     let mut input_file = File::open(img_path).unwrap();
+
     //let inputReader = BufReader::new(inputFile);
 
     let mut buffer = Vec::new();
