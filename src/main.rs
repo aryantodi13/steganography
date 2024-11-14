@@ -15,7 +15,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut input_file = File::open(img_path).unwrap();
 
     //let inputReader = BufReader::new(inputFile);
-
     let mut buffer = Vec::new();
     let _ = input_file.read_to_end(&mut buffer);
     //println!("{}", buffer.len());
